@@ -1,23 +1,25 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <time.h>
+#include <stdlib.h>
+
 /**
- * main - entry point generates a random password
+ * main - randomise a password for 101-crackme
  *
- * Return: the generated password
+ * Return: 0
  */
 int main(void)
 {
-char c;
-int x;
+	int unlock, passwd;
 
-srand(time(0));
-while (x <= 2645)
-{
-c = rand() % 128;
-x += c;
-putchar(c);
-}
-putchar(2772 - x);
-return (0);
+	srand(time(NULL));
+	unlock = 2772;
+	while (unlock >= 127)
+	{
+		passwd = (rand() % 126) + 1;
+		printf("%c", passwd);
+		unlock -= passwd;
+	}
+
+	printf("%c", unlock);
+	return (0);
 }
